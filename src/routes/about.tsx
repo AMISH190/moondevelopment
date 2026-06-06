@@ -1,0 +1,83 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { PageHeader } from "@/components/PageHeader";
+import moonBanner from "@/assets/moonbanner.png.asset.json";
+
+export const Route = createFileRoute("/about")({
+  head: () => ({
+    meta: [
+      { title: "About — Moon Development" },
+      { name: "description", content: "Moon Development is a small team of friends building Discord bots, game clients, and AI tools." },
+      { property: "og:title", content: "About Moon Development" },
+      { property: "og:description", content: "Our team, our roles, and our mission." },
+      { property: "og:image", content: moonBanner.url },
+    ],
+  }),
+  component: AboutPage,
+});
+
+const team = [
+  { name: "Founder", role: "Lead Developer & AI", body: "Backend, infra, and the AI experiments. Keeps the lights on." },
+  { name: "Co-founder", role: "Frontend & Design", body: "UI, web, and the look-and-feel of everything Moon ships." },
+];
+
+function AboutPage() {
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <SiteNav />
+      <PageHeader
+        eyebrow="About"
+        title="A small team. Big ideas. Built in public."
+      />
+
+      <section className="max-w-6xl mx-auto px-6">
+        <img src={moonBanner.url} alt="Moon Development banner" className="w-full rounded-3xl" />
+      </section>
+
+      <section className="max-w-3xl mx-auto px-6 py-20">
+        <p className="text-xs uppercase tracking-[0.25em] text-primary mb-3">Mission</p>
+        <h2 className="text-3xl md:text-4xl font-semibold mb-5">
+          Make great software for the communities we're part of.
+        </h2>
+        <p className="text-muted-foreground text-lg leading-relaxed">
+          Moon Development is two friends shipping the tools we wished existed.
+          Free, polished, honest. We talk to the people who use what we build,
+          and we ship the things they ask for. No investors, no roadmap politics —
+          just craft.
+        </p>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-6 pb-20">
+        <h2 className="text-3xl md:text-4xl font-semibold mb-10">The team</h2>
+        <div className="grid md:grid-cols-2 gap-5">
+          {team.map((m) => (
+            <div key={m.name} className="rounded-3xl bg-card p-8 border border-white/5">
+              <p className="text-xs uppercase tracking-wider text-primary mb-2">{m.role}</p>
+              <h3 className="text-2xl font-semibold mb-2">{m.name}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{m.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-6 pb-24">
+        <h2 className="text-3xl md:text-4xl font-semibold mb-10">What we do</h2>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            { tag: "Web", body: "Marketing sites, dashboards, full-stack apps." },
+            { tag: "Bots", body: "Discord bots from music to moderation." },
+            { tag: "AI", body: "LLM apps, agents, and integrations." },
+          ].map((s) => (
+            <div key={s.tag} className="rounded-3xl bg-card p-7 border border-white/5">
+              <p className="text-xs uppercase tracking-wider text-primary mb-2">{s.tag}</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <SiteFooter />
+    </div>
+  );
+}
