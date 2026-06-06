@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 import moonBanner from "@/assets/moonbanner.png.asset.json";
 import amixh from "@/assets/amixh.png.asset.json";
 import zack from "@/assets/zack.png.asset.json";
+import snik from "@/assets/snik.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -20,8 +21,9 @@ export const Route = createFileRoute("/about")({
 });
 
 const team = [
-  { name: "Amixh", role: "Co-founder · Dev & AI", body: "Builds the bots, runs the infra, and tinkers with AI experiments late into the night.", avatar: amixh.url },
-  { name: "Zack", role: "Co-founder · Dev & Design", body: "Frontend, design, and the polish on everything Moon ships.", avatar: zack.url },
+  { name: "Amixhh", role: "Founder · Web Dev & AI", body: "Founder of Moon Development. Builds the web, ships the AI experiments, and keeps the lights on.", avatar: amixh.url },
+  { name: "Zack", role: "Co-founder · Discord Bots & AI", body: "Co-founder. Lives in Discord bot land — commands, systems, and AI features.", avatar: zack.url },
+  { name: "snik.dev", role: "Developer · Full-stack", body: "Generalist developer — web, bots, AI, whatever the project needs.", avatar: snik.url },
 ];
 
 function AboutPage() {
