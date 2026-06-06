@@ -31,7 +31,7 @@ export function SiteFooter() {
             <li><Link to="/contact" className="hover:text-foreground">Contact form</Link></li>
             <li><a href="mailto:moonxdevs@gmail.com" className="hover:text-foreground">moonxdevs@gmail.com</a></li>
             <li><a href="mailto:moondevelopement@gmail.com" className="hover:text-foreground">moondevelopement@gmail.com</a></li>
-            <li><a href="https://discord.gg/GzG7dH6tns" target="_blank" rel="noreferrer" className="hover:text-foreground">Discord server</a></li>
+            <li><a href="https://discord.gg/2MvgZ349Wc" target="_blank" rel="noreferrer" className="hover:text-foreground">Discord server</a></li>
           </ul>
         </div>
       </div>
