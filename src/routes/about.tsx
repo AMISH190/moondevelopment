@@ -54,10 +54,13 @@ function AboutPage() {
         <h2 className="text-3xl md:text-4xl font-semibold mb-10">The team</h2>
         <div className="grid md:grid-cols-2 gap-5">
           {team.map((m) => (
-            <div key={m.name} className="rounded-3xl bg-card p-8 border border-white/5">
-              <p className="text-xs uppercase tracking-wider text-primary mb-2">{m.role}</p>
-              <h3 className="text-2xl font-semibold mb-2">{m.name}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{m.body}</p>
+            <div key={m.name} className="rounded-3xl bg-card p-8 border border-white/5 flex items-center gap-5">
+              <img src={m.avatar} alt={m.name} className="h-20 w-20 rounded-2xl object-cover shrink-0" />
+              <div>
+                <p className="text-xs uppercase tracking-wider text-primary mb-1">{m.role}</p>
+                <h3 className="text-2xl font-semibold mb-1">{m.name}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{m.body}</p>
+              </div>
             </div>
           ))}
         </div>
