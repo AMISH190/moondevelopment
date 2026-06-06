@@ -29,7 +29,8 @@ export function SiteFooter() {
           <p className="text-xs uppercase tracking-wider text-muted-foreground mb-3">Get in touch</p>
           <ul className="space-y-2 text-muted-foreground">
             <li><Link to="/contact" className="hover:text-foreground">Contact form</Link></li>
-            <li><a href="mailto:support@moondev.app" className="hover:text-foreground">support@moondev.app</a></li>
+            <li><a href="mailto:moonxdevs@gmail.com" className="hover:text-foreground">moonxdevs@gmail.com</a></li>
+            <li><a href="mailto:moondevelopement@gmail.com" className="hover:text-foreground">moondevelopement@gmail.com</a></li>
             <li><a href="https://discord.gg/GzG7dH6tns" target="_blank" rel="noreferrer" className="hover:text-foreground">Discord server</a></li>
           </ul>
         </div>
