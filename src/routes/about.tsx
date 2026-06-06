@@ -54,7 +54,7 @@ function AboutPage() {
 
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <h2 className="text-3xl md:text-4xl font-semibold mb-10">The team</h2>
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-3 gap-5">
           {team.map((m) => (
             <div key={m.name} className="rounded-3xl bg-card p-8 border border-white/5 flex items-center gap-5">
               <img src={m.avatar} alt={m.name} className="h-20 w-20 rounded-2xl object-cover shrink-0" />
