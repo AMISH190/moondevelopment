@@ -64,7 +64,7 @@ function ContactPage() {
         {[
           { label: "Support", value: "moonxdevs@gmail.com", href: "mailto:moonxdevs@gmail.com" },
           { label: "Business", value: "moondevelopement@gmail.com", href: "mailto:moondevelopement@gmail.com" },
-          { label: "Discord", value: "Join the server", href: "https://discord.gg/GzG7dH6tns" },
+          { label: "Discord", value: "Join the server", href: "https://discord.gg/2MvgZ349Wc" },
         ].map((c) => (
           <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
             className="rounded-3xl bg-card p-6 border border-white/5 hover:border-white/15 transition block">
