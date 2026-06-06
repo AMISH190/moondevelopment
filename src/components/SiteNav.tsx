@@ -13,7 +13,7 @@ export function SiteNav() {
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-nav border-b border-white/10">
       <nav className="mx-auto max-w-6xl px-6 h-12 flex items-center justify-between text-[13px] text-nav-foreground">
         <Link to="/" className="font-display font-semibold tracking-tight text-base">
-          ◉ kuro<span className="text-primary">.dev</span>
+          ◉ Moon<span className="text-primary"> Development</span>
         </Link>
         <ul className="hidden md:flex items-center gap-7">
           {links.map((l) => (

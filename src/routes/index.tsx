@@ -9,9 +9,9 @@ import mainHero from "@/assets/main-hero.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "kuro.dev — Building Discord bots, launchers & AI" },
+      { title: "Moon Development — Building Discord bots, launchers & AI" },
       { name: "description", content: "A small collective of developers shipping Nami, Moon Client, and bespoke web, bot, and AI projects." },
-      { property: "og:title", content: "kuro.dev — Developer Collective" },
+      { property: "og:title", content: "Moon Development — Developer Collective" },
       { property: "og:description", content: "Nami music bot. Moon Client launcher. Web, bots, and AI." },
     ],
   }),
@@ -26,7 +26,7 @@ function Index() {
       {/* HERO */}
       <section className="relative pt-12 overflow-hidden">
         <div className="relative px-6 pt-24 pb-20 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-primary mb-5">kuro.dev collective</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-primary mb-5">Moon Development</p>
           <h1 className="font-display font-semibold tracking-tight text-5xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl mx-auto">
             Built by friends.
             <br />
