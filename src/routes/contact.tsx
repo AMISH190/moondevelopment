@@ -47,7 +47,7 @@ function ContactPage() {
     // Open mail client as a no-backend fallback
     const { name, email, subject, message } = parsed.data;
     const body = encodeURIComponent(`From: ${name} <${email}>\n\n${message}`);
-    window.location.href = `mailto:support@moondev.app?subject=${encodeURIComponent(subject)}&body=${body}`;
+    window.location.href = `mailto:moonxdevs@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
     setStatus("sent");
   }
 
@@ -62,8 +62,8 @@ function ContactPage() {
 
       <section className="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-5">
         {[
-          { label: "Support", value: "support@moondev.app", href: "mailto:support@moondev.app" },
-          { label: "Business", value: "hello@moondev.app", href: "mailto:hello@moondev.app" },
+          { label: "Support", value: "moonxdevs@gmail.com", href: "mailto:moonxdevs@gmail.com" },
+          { label: "Business", value: "moondevelopement@gmail.com", href: "mailto:moondevelopement@gmail.com" },
           { label: "Discord", value: "Join the server", href: "https://discord.gg/GzG7dH6tns" },
         ].map((c) => (
           <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
