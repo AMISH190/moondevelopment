@@ -3,6 +3,8 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageHeader } from "@/components/PageHeader";
 import moonBanner from "@/assets/moonbanner.png.asset.json";
+import amixh from "@/assets/amixh.png.asset.json";
+import zack from "@/assets/zack.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -18,8 +20,8 @@ export const Route = createFileRoute("/about")({
 });
 
 const team = [
-  { name: "Founder", role: "Lead Developer & AI", body: "Backend, infra, and the AI experiments. Keeps the lights on." },
-  { name: "Co-founder", role: "Frontend & Design", body: "UI, web, and the look-and-feel of everything Moon ships." },
+  { name: "Amixh", role: "Co-founder · Dev & AI", body: "Builds the bots, runs the infra, and tinkers with AI experiments late into the night.", avatar: amixh.url },
+  { name: "Zack", role: "Co-founder · Dev & Design", body: "Frontend, design, and the polish on everything Moon ships.", avatar: zack.url },
 ];
 
 function AboutPage() {
@@ -52,10 +54,13 @@ function AboutPage() {
         <h2 className="text-3xl md:text-4xl font-semibold mb-10">The team</h2>
         <div className="grid md:grid-cols-2 gap-5">
           {team.map((m) => (
-            <div key={m.name} className="rounded-3xl bg-card p-8 border border-white/5">
-              <p className="text-xs uppercase tracking-wider text-primary mb-2">{m.role}</p>
-              <h3 className="text-2xl font-semibold mb-2">{m.name}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{m.body}</p>
+            <div key={m.name} className="rounded-3xl bg-card p-8 border border-white/5 flex items-center gap-5">
+              <img src={m.avatar} alt={m.name} className="h-20 w-20 rounded-2xl object-cover shrink-0" />
+              <div>
+                <p className="text-xs uppercase tracking-wider text-primary mb-1">{m.role}</p>
+                <h3 className="text-2xl font-semibold mb-1">{m.name}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{m.body}</p>
+              </div>
             </div>
           ))}
         </div>
