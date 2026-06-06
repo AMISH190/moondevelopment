@@ -3,6 +3,8 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageHeader } from "@/components/PageHeader";
 import moonBanner from "@/assets/moonbanner.png.asset.json";
+import amixh from "@/assets/amixh.png.asset.json";
+import zack from "@/assets/zack.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -18,8 +20,8 @@ export const Route = createFileRoute("/about")({
 });
 
 const team = [
-  { name: "Founder", role: "Lead Developer & AI", body: "Backend, infra, and the AI experiments. Keeps the lights on." },
-  { name: "Co-founder", role: "Frontend & Design", body: "UI, web, and the look-and-feel of everything Moon ships." },
+  { name: "Amixh", role: "Co-founder · Dev & AI", body: "Builds the bots, runs the infra, and tinkers with AI experiments late into the night.", avatar: amixh.url },
+  { name: "Zack", role: "Co-founder · Dev & Design", body: "Frontend, design, and the polish on everything Moon ships.", avatar: zack.url },
 ];
 
 function AboutPage() {

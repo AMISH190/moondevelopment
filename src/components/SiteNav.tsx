@@ -28,7 +28,7 @@ export function SiteNav() {
           ))}
         </ul>
         <a
-          href="https://discord.gg/"
+          href="https://discord.gg/GzG7dH6tns"
           target="_blank"
           rel="noreferrer"
           className="rounded-full bg-white text-black px-3.5 py-1.5 text-xs font-medium hover:bg-white/90 transition"

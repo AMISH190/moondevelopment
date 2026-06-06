@@ -30,7 +30,7 @@ export function SiteFooter() {
           <ul className="space-y-2 text-muted-foreground">
             <li><Link to="/contact" className="hover:text-foreground">Contact form</Link></li>
             <li><a href="mailto:support@moondev.app" className="hover:text-foreground">support@moondev.app</a></li>
-            <li><a href="https://discord.gg/" target="_blank" rel="noreferrer" className="hover:text-foreground">Discord server</a></li>
+            <li><a href="https://discord.gg/GzG7dH6tns" target="_blank" rel="noreferrer" className="hover:text-foreground">Discord server</a></li>
           </ul>
         </div>
       </div>
