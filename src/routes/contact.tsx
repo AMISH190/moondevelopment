@@ -82,7 +82,7 @@ function ContactPage() {
               <input
                 name={field}
                 type={field === "email" ? "email" : "text"}
-                maxLength={field === "message" ? 2000 : field === "email" ? 255 : field === "subject" ? 150 : 100}
+                maxLength={field === "email" ? 255 : field === "subject" ? 150 : 100}
                 className="w-full rounded-xl bg-background border border-white/10 px-4 py-2.5 text-sm focus:outline-none focus:border-primary"
               />
               {errors[field] && <p className="text-destructive text-xs mt-1">{errors[field]}</p>}
