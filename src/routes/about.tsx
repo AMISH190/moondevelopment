@@ -22,9 +22,10 @@ export const Route = createFileRoute("/about")({
 });
 
 const team = [
-  { name: "Amixhh", role: "Founder · Web Dev & AI", body: "Founder of Moon Development. Builds the web, ships the AI experiments, and keeps the lights on.", avatar: amixh.url },
-  { name: "Zack", role: "Co-founder · Discord Bots & AI", body: "Co-founder. Lives in Discord bot land — commands, systems, and AI features.", avatar: zack.url },
-  { name: "snik.dev", role: "Developer · Full-stack", body: "Generalist developer — web, bots, AI, whatever the project needs.", avatar: snik.url },
+  { name: "Amixhh", role: "Founder · Web Dev", body: "Founder of Moon Development. Builds the web, ships the products, and keeps the lights on.", avatar: amixh.url },
+  { name: "Zack", role: "Co-founder · Discord Bots", body: "Co-founder. Lives in Discord bot land — commands, systems, and integrations.", avatar: zack.url },
+  { name: "snik.dev", role: "Developer · Full-stack", body: "Generalist developer — web, bots, whatever the project needs.", avatar: snik.url },
+  { name: "Latency", role: "AI Tooling", body: "Owns the AI side of Moon — models, agents, and the tooling that wires them into our products.", avatar: latency.url },
 ];
 
 function AboutPage() {
