@@ -128,7 +128,7 @@ function Index() {
         <div className="rounded-3xl bg-gradient-to-br from-[oklch(0.18_0.04_265)] to-[oklch(0.1_0.02_260)] p-10 md:p-16 border border-white/10">
           <p className="text-xs uppercase tracking-[0.25em] text-primary mb-3">The team</p>
           <h2 className="text-4xl md:text-5xl font-semibold mb-4 max-w-2xl">
-            Just two friends who like building things.
+            A small crew who like building things.
           </h2>
           <p className="text-muted-foreground max-w-2xl text-lg">
             We started in a Discord call and never really left. Everything here is built
