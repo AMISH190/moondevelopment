@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      discord_events: {
+        Row: {
+          author_avatar: string | null
+          author_id: string | null
+          author_name: string | null
+          channel_id: string | null
+          channel_name: string | null
+          content: string | null
+          created_at: string
+          event_type: string
+          id: number
+          metadata: Json
+          occurred_at: string
+        }
+        Insert: {
+          author_avatar?: string | null
+          author_id?: string | null
+          author_name?: string | null
+          channel_id?: string | null
+          channel_name?: string | null
+          content?: string | null
+          created_at?: string
+          event_type: string
+          id?: number
+          metadata?: Json
+          occurred_at?: string
+        }
+        Update: {
+          author_avatar?: string | null
+          author_id?: string | null
+          author_name?: string | null
+          channel_id?: string | null
+          channel_name?: string | null
+          content?: string | null
+          created_at?: string
+          event_type?: string
+          id?: number
+          metadata?: Json
+          occurred_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
