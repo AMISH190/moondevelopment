@@ -6,6 +6,7 @@ import moonBanner from "@/assets/moonbanner.png.asset.json";
 import amixh from "@/assets/amixh.png.asset.json";
 import zack from "@/assets/zack.png.asset.json";
 import snik from "@/assets/snik.png.asset.json";
+import latency from "@/assets/latency.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
