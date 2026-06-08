@@ -4,6 +4,7 @@ import { z } from "zod";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageHeader } from "@/components/PageHeader";
+import { DiscordLive } from "@/components/DiscordLive";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -73,6 +74,9 @@ function ContactPage() {
           </a>
         ))}
       </section>
+
+      <DiscordLive />
+
 
       <section className="max-w-2xl mx-auto px-6 pb-24">
         <form onSubmit={onSubmit} className="rounded-3xl bg-card border border-white/5 p-8 space-y-5">
