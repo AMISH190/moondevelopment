@@ -7,6 +7,7 @@ import amixh from "@/assets/amixh.png.asset.json";
 import zack from "@/assets/zack.png.asset.json";
 import snik from "@/assets/snik.png.asset.json";
 import latency from "@/assets/latency.png.asset.json";
+import shadineeey from "@/assets/shadineeey.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -26,6 +27,7 @@ const team = [
   { name: "Zack", role: "Co-founder · Discord Bots", body: "Co-founder. Lives in Discord bot land — commands, systems, and integrations.", avatar: zack.url },
   { name: "snik.dev", role: "Developer · Full-stack", body: "Generalist developer — web, bots, whatever the project needs.", avatar: snik.url },
   { name: "Latency", role: "AI Tooling", body: "Owns the AI side of Moon — models, agents, and the tooling that wires them into our products.", avatar: latency.url },
+  { name: "shadineeey", role: "Helper", body: "Helper on the Moon team — supports the community and lends a hand wherever it's needed.", avatar: shadineeey.url },
 ];
 
 function AboutPage() {
