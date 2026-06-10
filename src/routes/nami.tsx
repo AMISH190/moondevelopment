@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageHeader } from "@/components/PageHeader";
-import namiHero from "@/assets/nami-hero.jpg";
+
+
 
 export const Route = createFileRoute("/nami")({
   head: () => ({
@@ -34,9 +35,6 @@ function NamiPage() {
         title="Music, your server, perfectly in tune."
         description="A Discord music bot we built for our own server, then opened up to everyone."
       />
-      <section className="max-w-6xl mx-auto px-6">
-        <img src={namiHero} alt="Nami music bot" className="w-full rounded-3xl" />
-      </section>
 
       <section className="max-w-6xl mx-auto px-6 py-10 flex flex-wrap gap-3 justify-center">
         <a href="https://discord.com/oauth2/authorize" target="_blank" rel="noreferrer"
