@@ -46,7 +46,7 @@ const faqs = [
 
 function DocsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-transparent text-foreground">
       <SiteNav />
       <PageHeader
         eyebrow="Documentation"

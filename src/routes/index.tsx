@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ProductTile } from "@/components/ProductTile";
 import namiHero from "@/assets/nami-hero.jpg";
 import moonHero from "@/assets/moon-hero.jpg";
-import mainHero from "@/assets/main-hero.jpg";
+import siteBg from "@/assets/site-bg.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-transparent text-foreground">
       <SiteNav />
 
       {/* HERO */}
@@ -48,13 +48,18 @@ function Index() {
           </div>
         </div>
         <div className="relative max-w-6xl mx-auto px-6">
-          <img
-            src={mainHero}
-            alt="Abstract gradient backdrop"
-            width={1920}
-            height={1080}
-            className="w-full rounded-3xl"
-          />
+          <div className="relative w-full overflow-hidden rounded-3xl border border-white/10 shadow-2xl aspect-[16/9]">
+            <video
+              src={siteBg.url}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+          </div>
         </div>
       </section>
 

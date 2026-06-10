@@ -27,7 +27,7 @@ const features = [
 
 function MoonPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-transparent text-foreground">
       <SiteNav />
       <PageHeader
         eyebrow="Moon Client"
