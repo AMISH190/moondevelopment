@@ -26,7 +26,7 @@ const team = [
   { name: "Amixhh", role: "Founder · Web Dev", body: "Founder of Moon Development. Builds the web, ships the products, and keeps the lights on.", avatar: amixh.url },
   { name: "Zack", role: "Founder · Discord Bots", body: "Founder. Lives in Discord bot land — commands, systems, and integrations.", avatar: zack.url },
   { name: "snik.dev", role: "Developer · Full-stack", body: "Generalist developer — web, bots, whatever the project needs.", avatar: snik.url },
-  { name: "Latency", role: "AI Tooling", body: "Owns the AI side of Moon — models, agents, and the tooling that wires them into our products.", avatar: latency.url },
+  { name: "Latency", role: "Owner · AI Tooling", body: "Owns the AI side of Moon — models, agents, and the tooling that wires them into our products.", avatar: latency.url },
   { name: "shadineeey", role: "Helper", body: "Helper on the Moon team — supports the community and lends a hand wherever it's needed.", avatar: shadineeey.url },
 ];
 
