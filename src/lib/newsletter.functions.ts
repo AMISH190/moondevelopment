@@ -42,18 +42,14 @@ export const subscribeNewsletter = createServerFn({ method: "POST" })
     }
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const db = supabaseAdmin as any;
 
-    // Upsert pending subscriber; reuse existing tokens if record exists.
-    const { data: existing } = await supabaseAdmin
-      .from("newsletter_subscribers" as never)
+    const { data: existing } = await db
+      .from("newsletter_subscribers")
       .select("id,status,confirm_token,unsubscribe_token")
       .eq("email", data.email)
-      .maybeSingle<{
-        id: string;
-        status: string;
-        confirm_token: string;
-        unsubscribe_token: string;
-      }>();
+      .maybeSingle();
 
     let confirmToken: string;
     let unsubscribeToken: string;
@@ -64,17 +60,16 @@ export const subscribeNewsletter = createServerFn({ method: "POST" })
       }
       confirmToken = existing.confirm_token;
       unsubscribeToken = existing.unsubscribe_token;
-      // Reset to pending in case they previously unsubscribed
-      await supabaseAdmin
-        .from("newsletter_subscribers" as never)
+      await db
+        .from("newsletter_subscribers")
         .update({ status: "pending", ip, user_agent: userAgent })
         .eq("id", existing.id);
     } else {
-      const { data: inserted, error } = await supabaseAdmin
-        .from("newsletter_subscribers" as never)
+      const { data: inserted, error } = await db
+        .from("newsletter_subscribers")
         .insert({ email: data.email, ip, user_agent: userAgent })
         .select("confirm_token,unsubscribe_token")
-        .single<{ confirm_token: string; unsubscribe_token: string }>();
+        .single();
       if (error || !inserted) {
         throw new Error("Could not save subscription. Please try again.");
       }

@@ -18,23 +18,20 @@ export const Route = createFileRoute("/api/public/newsletter/confirm")({
         const { supabaseAdmin } = await import(
           "@/integrations/supabase/client.server"
         );
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const db = supabaseAdmin as any;
 
-        const { data: sub } = await supabaseAdmin
-          .from("newsletter_subscribers" as never)
+        const { data: sub } = await db
+          .from("newsletter_subscribers")
           .select("id,email,status,unsubscribe_token")
           .eq("confirm_token", token)
-          .maybeSingle<{
-            id: string;
-            email: string;
-            status: string;
-            unsubscribe_token: string;
-          }>();
+          .maybeSingle();
 
         if (!sub) return new Response("Token not found", { status: 404 });
 
         if (sub.status !== "confirmed") {
-          await supabaseAdmin
-            .from("newsletter_subscribers" as never)
+          await db
+            .from("newsletter_subscribers")
             .update({ status: "confirmed", confirmed_at: new Date().toISOString() })
             .eq("id", sub.id);
 

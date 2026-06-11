@@ -13,17 +13,19 @@ export const Route = createFileRoute("/api/public/newsletter/unsubscribe")({
         const { supabaseAdmin } = await import(
           "@/integrations/supabase/client.server"
         );
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const db = supabaseAdmin as any;
 
-        const { data: sub } = await supabaseAdmin
-          .from("newsletter_subscribers" as never)
+        const { data: sub } = await db
+          .from("newsletter_subscribers")
           .select("id")
           .eq("unsubscribe_token", token)
-          .maybeSingle<{ id: string }>();
+          .maybeSingle();
 
         if (!sub) return new Response("Token not found", { status: 404 });
 
-        await supabaseAdmin
-          .from("newsletter_subscribers" as never)
+        await db
+          .from("newsletter_subscribers")
           .update({
             status: "unsubscribed",
             unsubscribed_at: new Date().toISOString(),

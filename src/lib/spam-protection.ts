@@ -27,13 +27,15 @@ export async function checkRateLimit(
   windowSeconds: number,
 ): Promise<{ allowed: boolean; retryAfterSec: number }> {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const db = supabaseAdmin as any;
   const now = new Date();
 
-  const { data: existing } = await supabaseAdmin
-    .from("rate_limits" as never)
+  const { data: existing } = await db
+    .from("rate_limits")
     .select("key,count,window_start")
     .eq("key", key)
-    .maybeSingle<{ key: string; count: number; window_start: string }>();
+    .maybeSingle();
 
   const windowStart = existing ? new Date(existing.window_start) : null;
   const windowAgeSec = windowStart
@@ -41,9 +43,8 @@ export async function checkRateLimit(
     : Infinity;
 
   if (!existing || windowAgeSec >= windowSeconds) {
-    // Reset window
-    await supabaseAdmin
-      .from("rate_limits" as never)
+    await db
+      .from("rate_limits")
       .upsert({ key, count: 1, window_start: now.toISOString() }, { onConflict: "key" });
     return { allowed: true, retryAfterSec: 0 };
   }
@@ -52,8 +53,8 @@ export async function checkRateLimit(
     return { allowed: false, retryAfterSec: windowSeconds - windowAgeSec };
   }
 
-  await supabaseAdmin
-    .from("rate_limits" as never)
+  await db
+    .from("rate_limits")
     .update({ count: existing.count + 1 })
     .eq("key", key);
 
