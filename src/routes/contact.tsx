@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { SiteNav } from "@/components/SiteNav";
@@ -31,6 +31,7 @@ function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const renderedAt = useRef<number>(Date.now());
   const sendEmail = useServerFn(sendContactEmail);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -52,7 +53,13 @@ function ContactPage() {
     setErrors({});
     setStatus("sending");
     try {
-      await sendEmail({ data: parsed.data });
+      await sendEmail({
+        data: {
+          ...parsed.data,
+          website: (fd.get("website") as string) || "",
+          renderedAt: renderedAt.current,
+        },
+      });
       setStatus("sent");
       form.reset();
     } catch (err) {
@@ -89,6 +96,15 @@ function ContactPage() {
 
       <section className="max-w-2xl mx-auto px-6 pb-24">
         <form onSubmit={onSubmit} className="rounded-3xl bg-card border border-white/5 p-8 space-y-5">
+          {/* Honeypot */}
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ position: "absolute", left: "-10000px", width: 1, height: 1, opacity: 0 }}
+          />
           {(["name", "email", "subject"] as const).map((field) => (
             <div key={field}>
               <label className="block text-xs uppercase tracking-wider text-muted-foreground mb-2 capitalize">{field}</label>

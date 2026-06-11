@@ -1,8 +1,12 @@
 import { Link } from "@tanstack/react-router";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-background">
+      <div className="mx-auto max-w-6xl px-6 pt-12 pb-6">
+        <NewsletterSignup />
+      </div>
       <div className="mx-auto max-w-6xl px-6 py-12 grid gap-8 md:grid-cols-4 text-sm">
         <div>
           <p className="font-display font-semibold mb-2">Moon Development</p>
