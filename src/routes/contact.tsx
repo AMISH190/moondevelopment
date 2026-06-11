@@ -28,12 +28,15 @@ const schema = z.object({
 });
 
 function ContactPage() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errorMsg, setErrorMsg] = useState<string>("");
+  const sendEmail = useServerFn(sendContactEmail);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const parsed = schema.safeParse({
       name: fd.get("name"),
       email: fd.get("email"),
@@ -47,11 +50,15 @@ function ContactPage() {
       return;
     }
     setErrors({});
-    // Open mail client as a no-backend fallback
-    const { name, email, subject, message } = parsed.data;
-    const body = encodeURIComponent(`From: ${name} <${email}>\n\n${message}`);
-    window.location.href = `mailto:moonxdevs@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-    setStatus("sent");
+    setStatus("sending");
+    try {
+      await sendEmail({ data: parsed.data });
+      setStatus("sent");
+      form.reset();
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Failed to send message");
+    }
   }
 
   return (
