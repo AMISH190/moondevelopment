@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageHeader } from "@/components/PageHeader";
 import { DiscordLive } from "@/components/DiscordLive";
+import { sendContactEmail } from "@/lib/email.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
