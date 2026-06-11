@@ -16,6 +16,9 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NewsletterConfirmedRouteImport } from './routes/newsletter.confirmed'
+import { Route as ApiPublicNewsletterUnsubscribeRouteImport } from './routes/api/public/newsletter/unsubscribe'
+import { Route as ApiPublicNewsletterConfirmRouteImport } from './routes/api/public/newsletter/confirm'
 
 const NamiRoute = NamiRouteImport.update({
   id: '/nami',
@@ -52,6 +55,23 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsletterConfirmedRoute = NewsletterConfirmedRouteImport.update({
+  id: '/newsletter/confirmed',
+  path: '/newsletter/confirmed',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicNewsletterUnsubscribeRoute =
+  ApiPublicNewsletterUnsubscribeRouteImport.update({
+    id: '/api/public/newsletter/unsubscribe',
+    path: '/api/public/newsletter/unsubscribe',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicNewsletterConfirmRoute =
+  ApiPublicNewsletterConfirmRouteImport.update({
+    id: '/api/public/newsletter/confirm',
+    path: '/api/public/newsletter/confirm',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +81,9 @@ export interface FileRoutesByFullPath {
   '/docs': typeof DocsRoute
   '/moon-client': typeof MoonClientRoute
   '/nami': typeof NamiRoute
+  '/newsletter/confirmed': typeof NewsletterConfirmedRoute
+  '/api/public/newsletter/confirm': typeof ApiPublicNewsletterConfirmRoute
+  '/api/public/newsletter/unsubscribe': typeof ApiPublicNewsletterUnsubscribeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +93,9 @@ export interface FileRoutesByTo {
   '/docs': typeof DocsRoute
   '/moon-client': typeof MoonClientRoute
   '/nami': typeof NamiRoute
+  '/newsletter/confirmed': typeof NewsletterConfirmedRoute
+  '/api/public/newsletter/confirm': typeof ApiPublicNewsletterConfirmRoute
+  '/api/public/newsletter/unsubscribe': typeof ApiPublicNewsletterUnsubscribeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +106,9 @@ export interface FileRoutesById {
   '/docs': typeof DocsRoute
   '/moon-client': typeof MoonClientRoute
   '/nami': typeof NamiRoute
+  '/newsletter/confirmed': typeof NewsletterConfirmedRoute
+  '/api/public/newsletter/confirm': typeof ApiPublicNewsletterConfirmRoute
+  '/api/public/newsletter/unsubscribe': typeof ApiPublicNewsletterUnsubscribeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,8 +120,21 @@ export interface FileRouteTypes {
     | '/docs'
     | '/moon-client'
     | '/nami'
+    | '/newsletter/confirmed'
+    | '/api/public/newsletter/confirm'
+    | '/api/public/newsletter/unsubscribe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/blog' | '/contact' | '/docs' | '/moon-client' | '/nami'
+  to:
+    | '/'
+    | '/about'
+    | '/blog'
+    | '/contact'
+    | '/docs'
+    | '/moon-client'
+    | '/nami'
+    | '/newsletter/confirmed'
+    | '/api/public/newsletter/confirm'
+    | '/api/public/newsletter/unsubscribe'
   id:
     | '__root__'
     | '/'
@@ -102,6 +144,9 @@ export interface FileRouteTypes {
     | '/docs'
     | '/moon-client'
     | '/nami'
+    | '/newsletter/confirmed'
+    | '/api/public/newsletter/confirm'
+    | '/api/public/newsletter/unsubscribe'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -112,6 +157,9 @@ export interface RootRouteChildren {
   DocsRoute: typeof DocsRoute
   MoonClientRoute: typeof MoonClientRoute
   NamiRoute: typeof NamiRoute
+  NewsletterConfirmedRoute: typeof NewsletterConfirmedRoute
+  ApiPublicNewsletterConfirmRoute: typeof ApiPublicNewsletterConfirmRoute
+  ApiPublicNewsletterUnsubscribeRoute: typeof ApiPublicNewsletterUnsubscribeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -165,6 +213,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/newsletter/confirmed': {
+      id: '/newsletter/confirmed'
+      path: '/newsletter/confirmed'
+      fullPath: '/newsletter/confirmed'
+      preLoaderRoute: typeof NewsletterConfirmedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/newsletter/unsubscribe': {
+      id: '/api/public/newsletter/unsubscribe'
+      path: '/api/public/newsletter/unsubscribe'
+      fullPath: '/api/public/newsletter/unsubscribe'
+      preLoaderRoute: typeof ApiPublicNewsletterUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/newsletter/confirm': {
+      id: '/api/public/newsletter/confirm'
+      path: '/api/public/newsletter/confirm'
+      fullPath: '/api/public/newsletter/confirm'
+      preLoaderRoute: typeof ApiPublicNewsletterConfirmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -176,6 +245,9 @@ const rootRouteChildren: RootRouteChildren = {
   DocsRoute: DocsRoute,
   MoonClientRoute: MoonClientRoute,
   NamiRoute: NamiRoute,
+  NewsletterConfirmedRoute: NewsletterConfirmedRoute,
+  ApiPublicNewsletterConfirmRoute: ApiPublicNewsletterConfirmRoute,
+  ApiPublicNewsletterUnsubscribeRoute: ApiPublicNewsletterUnsubscribeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

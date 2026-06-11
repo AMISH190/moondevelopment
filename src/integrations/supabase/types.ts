@@ -56,6 +56,63 @@ export type Database = {
         }
         Relationships: []
       }
+      newsletter_subscribers: {
+        Row: {
+          confirm_token: string
+          confirmed_at: string | null
+          created_at: string
+          email: string
+          id: string
+          ip: string | null
+          status: string
+          unsubscribe_token: string
+          unsubscribed_at: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          confirm_token?: string
+          confirmed_at?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          ip?: string | null
+          status?: string
+          unsubscribe_token?: string
+          unsubscribed_at?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          confirm_token?: string
+          confirmed_at?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          ip?: string | null
+          status?: string
+          unsubscribe_token?: string
+          unsubscribed_at?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
+      rate_limits: {
+        Row: {
+          count: number
+          key: string
+          window_start: string
+        }
+        Insert: {
+          count?: number
+          key: string
+          window_start?: string
+        }
+        Update: {
+          count?: number
+          key?: string
+          window_start?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
