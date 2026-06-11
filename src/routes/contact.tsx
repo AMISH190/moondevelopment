@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageHeader } from "@/components/PageHeader";
 import { DiscordLive } from "@/components/DiscordLive";
+import { sendContactEmail } from "@/lib/email.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -26,12 +28,15 @@ const schema = z.object({
 });
 
 function ContactPage() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errorMsg, setErrorMsg] = useState<string>("");
+  const sendEmail = useServerFn(sendContactEmail);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const parsed = schema.safeParse({
       name: fd.get("name"),
       email: fd.get("email"),
@@ -45,11 +50,15 @@ function ContactPage() {
       return;
     }
     setErrors({});
-    // Open mail client as a no-backend fallback
-    const { name, email, subject, message } = parsed.data;
-    const body = encodeURIComponent(`From: ${name} <${email}>\n\n${message}`);
-    window.location.href = `mailto:moonxdevs@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-    setStatus("sent");
+    setStatus("sending");
+    try {
+      await sendEmail({ data: parsed.data });
+      setStatus("sent");
+      form.reset();
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Failed to send message");
+    }
   }
 
   return (
@@ -102,12 +111,15 @@ function ContactPage() {
             />
             {errors.message && <p className="text-destructive text-xs mt-1">{errors.message}</p>}
           </div>
-          <button type="submit"
-            className="w-full rounded-full bg-white text-black px-5 py-3 text-sm font-medium hover:bg-white/90 transition">
-            Send message
+          <button type="submit" disabled={status === "sending"}
+            className="w-full rounded-full bg-white text-black px-5 py-3 text-sm font-medium hover:bg-white/90 transition disabled:opacity-60">
+            {status === "sending" ? "Sending…" : "Send message"}
           </button>
           {status === "sent" && (
-            <p className="text-center text-sm text-muted-foreground">Your email client should open now. Thanks!</p>
+            <p className="text-center text-sm text-muted-foreground">Message sent — thanks! We'll get back to you soon.</p>
+          )}
+          {status === "error" && (
+            <p className="text-center text-sm text-destructive">{errorMsg || "Something went wrong. Please try again."}</p>
           )}
         </form>
       </section>
