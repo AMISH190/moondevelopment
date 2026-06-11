@@ -111,12 +111,15 @@ function ContactPage() {
             />
             {errors.message && <p className="text-destructive text-xs mt-1">{errors.message}</p>}
           </div>
-          <button type="submit"
-            className="w-full rounded-full bg-white text-black px-5 py-3 text-sm font-medium hover:bg-white/90 transition">
-            Send message
+          <button type="submit" disabled={status === "sending"}
+            className="w-full rounded-full bg-white text-black px-5 py-3 text-sm font-medium hover:bg-white/90 transition disabled:opacity-60">
+            {status === "sending" ? "Sending…" : "Send message"}
           </button>
           {status === "sent" && (
-            <p className="text-center text-sm text-muted-foreground">Your email client should open now. Thanks!</p>
+            <p className="text-center text-sm text-muted-foreground">Message sent — thanks! We'll get back to you soon.</p>
+          )}
+          {status === "error" && (
+            <p className="text-center text-sm text-destructive">{errorMsg || "Something went wrong. Please try again."}</p>
           )}
         </form>
       </section>
